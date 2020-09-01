@@ -1,17 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Signin Template · Bootstrap</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-{% extends 'base.html' %}
-{% load bootstrap4 %}
-{% block container %}
+	<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+
+	<meta name="theme-color" content="#563d7c">
 
 
-    <div class="container">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+        #my_btn{
+		margin : 0 auto;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		width:400px;
+		height:60px;
+		border: 1px solid skyblue;
+		background-color: rgba(0,0,0,0);
+		color: skyblue;
+		padding: 5px;
+		}
+		.box_go_center{
+		top:50%;
+        left:50%;
+		margin : 0 auto;
+        text-align:center;
+		}
+		.my-box {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		width:500px;
+		margin : 0 auto;
+		border:1px solid;
+		border-color: white;
+		padding:10px;
+		background-color: white;
+		line-color: white;
+		}
+    </style>
+  </head>
+
+
+
+<body style="background-image:url('/static/img/writebackground.jpg'); background-size:cover">
+    <div style="height:100px"></div>
+    <div class="my-box">
         <h1>새댓글작성</h1>
         <form method="post" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
-            {% bootstrap_form post_form %}
-            <button type="submit" class="btn btn-primary">등록</button>
+            <input type="text"  name="contents" id="contents" class="form-control" placeholder="글 내용"
+                   value="{{ form.contents.value|default_if_none:'' }}" style="width:400px; height:200px; margin : 0 auto;">
+            <input type="number" name="starpoint" id="starpoint" class="form-control" placeholder="별점 1~5"
+                   value="{{ form.starpoint.value|default_if_none:'' }}" style="width:400px; height:40px; margin : 0 auto;" min="1" max="5">
+            <input type="file" name="images" id="images" accept="image/*" style="margin : 0 auto;"
+                   value="{{ form.images.value|default_if_none:'' }}">
+            <div class="box_go_center">
+                <button  name=my_btn" id="my_btn" type="submit">등록</button>
+            </div>
+            <div style="height:20px"></div>
         </form>
     </div>
+</body>
 
-
-{% endblock %}
+</html>
