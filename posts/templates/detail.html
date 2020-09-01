@@ -57,6 +57,13 @@
 		<link rel="stylesheet" href="/static/detail/css/magnific-popup.css">
 		<link rel="stylesheet" href="/static/detail/css/bootstrap.css">
 		<link rel="stylesheet" href="/static/detail/css/main.css">
+
+		    <style>
+				.star-rating {width:304px; }
+				.wrap-star .star-rating span {display:inline-block; height:55px; overflow:hidden;
+				background:url(/static/img/star.png)no-repeat; }
+				.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
+			</style>
 	</head>
 	<body style="padding-bottom: 2rem;">
 	<!-- ajax 호출 -->
@@ -141,15 +148,42 @@
 
 						{% for post in park_post.posts.all %}
 						<div style="padding-left: 10px; padding-right: 10px;
-						padding-bottom: 20px;">
-							<h2>{{ post.author }}</h2>
-							<div>
-								<p> {{ post.starpoint }} / 5 </p>
-								<p>{{ post.contents }}</p>
-								{% if post.images %}
-								<img src="{{ post.images.url }}" width="200" height="100" />
-							{% endif %}
-							</div>
+						padding-bottom: 20px;" id="list">
+							<script>
+									var ratingFunction = function() {
+										var h2 = $("<h2></h2>").text('{{post.author}}')
+										$('#list').append(h2)
+										var starlist = $("<div></div>").attr('id', 'starlist')
+    									var div = $("<div></div>").addClass("wrap-star")
+    									var in_div = $("<div></div>").addClass("star-rating")
+    									var span = $("<span></span>").attr('id', 'star')
+    									var percent = {{ post.starpoint }} * 20;
+    									span.attr('style', 'width:' + percent + '%');
+    									in_div.append(span)
+    									div.append(in_div)
+    									starlist.append(div)
+    									var p = $("<p></p>").text('{{post.contents}}')
+    									starlist.append(p)
+    									{% if post.images %}
+    									var img = $("<img />").attr({
+    									'src' : '{{post.images.url}}',
+    									'width' : 200,
+    									'height' : 100,
+    									})
+    									starlist.append(img)
+    									{% endif %}
+    									$('#list').append(starlist)
+    								}
+    								ratingFunction();
+								</script>
+<!--							<h2>{{ post.author }}</h2>-->
+<!--							<div id="starlist">-->
+<!--								<p> {{ post.starpoint }} / 5 </p>-->
+<!--								<p>{{ post.contents }}</p>-->
+<!--								{% if post.images %}-->
+<!--								<img src="{{ post.images.url }}" width="200" height="100" />-->
+<!--							{% endif %}-->
+<!--							</div>-->
 						</div>
 						{% empty %}
 						<p>아직 댓글이 없어요</p>
