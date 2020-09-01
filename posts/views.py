@@ -31,7 +31,10 @@ def p_makedb(request):
 def write_post(request, p_idx):
     park_post = get_object_or_404(Park_number, p_idx=p_idx)
     if request.method == 'POST':
-        post = Post(p_idx=park_post, author=request.user, images=request.FILES['images'])
+        if request.FILES:
+            post = Post(p_idx=park_post, author=request.user, images=request.FILES['images'])
+        else:
+            post = Post(p_idx=park_post, author=request.user, images=None)
         post_form = PostForm(request.POST, instance=post)
         if post_form.is_valid():
             post_form.save()

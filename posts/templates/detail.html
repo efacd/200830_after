@@ -14,7 +14,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Typo</title>
+	<title>InthePark-Detail</title>
 
 	<!-- detail.html head 가져온 것 -->
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -130,10 +130,10 @@
 			<section class="feature-area pt-90 pb-90">
 				<div class="container">
 					<div>
-						<span style="padding-right: 20px; font-size: 25px;">
+						<span style="padding-right: 20px; font-size: 35px;">
 							Comments
 						</span>
-						<span style="padding-right: 20px; font-size: 25px;">
+						<span style="padding-right: 20px; font-size: 35px;">
 							|
 						</span>
 						<a href="{% url 'posts:write_post' park_post.p_idx %}"
@@ -151,10 +151,13 @@
 						padding-bottom: 20px;" id="list">
 							<script>
 									var ratingFunction = function() {
-										var h2 = $("<h2></h2>").text('{{post.author}}')
+										var h2 = $("<h2></h2>").text('{{post.author}}').attr('style',
+										'font-size: 25px;')
 										$('#list').append(h2)
-										var starlist = $("<div></div>").attr('id', 'starlist')
-    									var div = $("<div></div>").addClass("wrap-star")
+										var starlist = $("<div></div>").attr('id', 'starlist').attr('style',
+										'padding-bottom: 30px;')
+    									var div = $("<div></div>").addClass("wrap-star").attr('style',
+    									'margin-bottom: 20px;')
     									var in_div = $("<div></div>").addClass("star-rating")
     									var span = $("<span></span>").attr('id', 'star')
     									var percent = {{ post.starpoint }} * 20;
@@ -162,7 +165,8 @@
     									in_div.append(span)
     									div.append(in_div)
     									starlist.append(div)
-    									var p = $("<p></p>").text('{{post.contents}}')
+    									var p = $("<p></p>").text('{{post.contents}}').attr('style',
+    									'margin-bottom: 30px; font-size: 20px;')
     									starlist.append(p)
     									{% if post.images %}
     									var img = $("<img />").attr({
